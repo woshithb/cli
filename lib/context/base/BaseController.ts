@@ -1,7 +1,3 @@
-export = {}
-
-abstract class BaseController {
+export abstract class BaseController {
   abstract destruct(): void
 }
-
-module.exports = BaseController

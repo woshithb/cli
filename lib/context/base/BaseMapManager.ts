@@ -1,6 +1,4 @@
-export = {}
-
-class BaseMapManager<T> {
+export class BaseMapManager<T> {
   constructor() {
     this.map = new Map<string, T>()
   }
@@ -31,5 +29,3 @@ class BaseMapManager<T> {
     this.map.forEach(callback)
   }
 }
-
-module.exports = BaseMapManager

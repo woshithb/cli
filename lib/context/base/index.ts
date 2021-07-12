@@ -1,7 +1,2 @@
-const BaseMapManager = require('./BaseMapManager');
-const BaseController = require('./BaseController')
-
-module.exports = {
-  BaseMapManager,
-  BaseController,
-}
+export * from './BaseMapManager';
+export * from './BaseController';
