@@ -1,4 +1,4 @@
-import {BaseMapManager, BaseController} from './base';
+import {BaseMapManager, BaseController, Destroyable} from './base';
 import {getBeanProperty} from '../util';
 
 interface IBaseBean<T>{
@@ -11,7 +11,7 @@ interface IBeanManagerConstructProps {
   beans: (new() => BaseController)[],
 }
 
-class BeanManager extends BaseMapManager<IBaseBean<BaseController>> {
+export class BeanManager extends BaseMapManager<IBaseBean<BaseController>> implements Destroyable{
   constructor(protected  option: IBeanManagerConstructProps) {
     super();
     this.init()
@@ -21,6 +21,13 @@ class BeanManager extends BaseMapManager<IBaseBean<BaseController>> {
     this.createBeans();
     this.wireBeans();
     this.postConstruct()
+  }
+
+  public destroy() {
+    this.forEach((baseBean => {
+      baseBean.beanInstance.destroy();
+    }))
+    this.clear();
   }
 
   private createBeans() {
@@ -39,8 +46,7 @@ class BeanManager extends BaseMapManager<IBaseBean<BaseController>> {
       const beanProperty = getBeanProperty(baseBean.beanClass);
       if (beanProperty.attributes) {
         beanProperty.attributes.forEach(attribute => {
-          //@ts-ignore
-          baseBean.beanInstance[attribute.attributeName] = this.lookForBeanInstance(beanName);
+          Reflect.set(baseBean.beanInstance, attribute.attributeName, this.lookForBeanInstance(beanName))
         })
       }
     })

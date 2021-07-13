@@ -1,3 +1,9 @@
-export abstract class BaseController {
-  abstract destruct(): void
+export interface Destroyable {
+  destroy: () => void
+}
+
+export abstract class BaseController implements Destroyable{
+  protected constructor() {
+  }
+  public abstract destroy(): void
 }

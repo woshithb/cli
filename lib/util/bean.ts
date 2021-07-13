@@ -1,9 +1,9 @@
-import {BaseController} from '../context';
+import {BaseController} from '@lib/context';
 
 export type BeanProperty = {
   beanName: string;
   attributes: Array<BeanPropertyAttribute>;
-  postConstruct: string;
+  postConstruct: string | Symbol;
   preDestroy: string;
 };
 
@@ -20,8 +20,8 @@ export function getBeanProperty(beanConstructor: Function): BeanProperty {
   return beanConstructor.prototype['_uniq_bean_property_key_'];
 }
 
-export function Bean(beanName: string) {
-  return function(beanConstructor: new() => BaseController) {
+export function Bean(beanName: string): ClassDecorator {
+  return function(beanConstructor) {
     getBeanProperty(beanConstructor).beanName = beanName;
     return beanConstructor;
   }
@@ -40,6 +40,6 @@ export function AutoWired(beanName: string): PropertyDecorator {
   }
 }
 
-export function PostConstruct(target: Object, methodName: string){
+export function PostConstruct(target: Object, methodName: string | Symbol){
   getBeanProperty(target.constructor).postConstruct = methodName
 }
