@@ -7,6 +7,7 @@ export type IDisposer = () => void
 
 export class EventEmitter extends BaseMapManager<TriggerTiming, IEventListener[]> implements Destroyable {
   public destroy() {
+    this.clear()
   }
 
   public on(time: TriggerTiming, listener: IEventListener): IDisposer {
@@ -21,7 +22,9 @@ export class EventEmitter extends BaseMapManager<TriggerTiming, IEventListener[]
     if (this.has(time)) {
       const listeners = this.get(time);
       const index = listeners.indexOf(listener);
-      listeners.splice(index, 1);
+      if (index > -1) {
+        listeners.splice(index, 1);
+      }
     }
   }
 
