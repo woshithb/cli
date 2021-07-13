@@ -1,23 +1,23 @@
-export class BaseMapManager<T> {
+export class BaseMapManager<T, P> {
   constructor() {
-    this.map = new Map<string, T>()
+    this.map = new Map<T, P>()
   }
 
-  protected map: Map<string, T>
+  protected map: Map<T, P>
 
-  protected has(key: string): boolean {
+  protected has(key: T): boolean {
     return this.map.has(key)
   }
 
-  protected set(key: string, value: T) {
+  protected set(key: T, value: P) {
     this.map.set(key, value)
   }
 
-  protected get(key: string): T | undefined {
+  protected get(key: T): P | undefined {
     return this.map.get(key)
   }
 
-  protected delete(key: string): boolean {
+  protected delete(key: T): boolean {
     return this.map.delete(key);
   }
 
@@ -25,7 +25,7 @@ export class BaseMapManager<T> {
     this.map.clear()
   }
 
-  protected forEach(callback: (value: T, key: string) => void) {
+  protected forEach(callback: (value: P, key: T) => void) {
     this.map.forEach(callback)
   }
 }

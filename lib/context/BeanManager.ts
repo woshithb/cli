@@ -11,7 +11,7 @@ interface IBeanManagerConstructProps {
   beans: (new() => BaseController)[],
 }
 
-export class BeanManager extends BaseMapManager<IBaseBean<BaseController>> implements Destroyable{
+export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController>> implements Destroyable{
   constructor(protected  option: IBeanManagerConstructProps) {
     super();
     this.init()

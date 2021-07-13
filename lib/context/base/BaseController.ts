@@ -3,7 +3,5 @@ export interface Destroyable {
 }
 
 export abstract class BaseController implements Destroyable{
-  protected constructor() {
-  }
   public abstract destroy(): void
 }

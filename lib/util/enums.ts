@@ -4,3 +4,7 @@ export enum BeanName {
   NodeVersionController = 'NodeVersionController',
   ParseController = 'ParseController'
 }
+
+export enum TriggerTiming {
+
+}

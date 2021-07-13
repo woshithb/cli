@@ -1,10 +1,8 @@
-import {BaseController} from '@lib/context';
-
 export type BeanProperty = {
   beanName: string;
   attributes: Array<BeanPropertyAttribute>;
-  postConstruct: string | Symbol;
-  preDestroy: string;
+  postConstruct: string | symbol;
+  preDestroy: string | symbol;
 };
 
 export type BeanPropertyAttribute = {
@@ -40,6 +38,6 @@ export function AutoWired(beanName: string): PropertyDecorator {
   }
 }
 
-export function PostConstruct(target: Object, methodName: string | Symbol){
+export function PostConstruct(target: Object, methodName: string | symbol){
   getBeanProperty(target.constructor).postConstruct = methodName
 }
