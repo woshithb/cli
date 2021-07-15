@@ -7,7 +7,7 @@ interface IBaseBean<T>{
   beanInstance: T,
 }
 
-interface IBeanManagerConstructProps {
+export interface IBeanManagerConstructProps {
   beans: (new() => BaseController)[],
 }
 

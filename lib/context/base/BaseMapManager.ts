@@ -5,27 +5,27 @@ export class BaseMapManager<T, P> {
 
   protected map: Map<T, P>
 
-  protected has(key: T): boolean {
+  public has(key: T): boolean {
     return this.map.has(key)
   }
 
-  protected set(key: T, value: P) {
+  public set(key: T, value: P) {
     this.map.set(key, value)
   }
 
-  protected get(key: T): P | undefined {
+  public get(key: T): P | undefined {
     return this.map.get(key)
   }
 
-  protected delete(key: T): boolean {
+  public delete(key: T): boolean {
     return this.map.delete(key);
   }
 
-  protected clear(): void {
+  public clear(): void {
     this.map.clear()
   }
 
-  protected forEach(callback: (value: P, key: T) => void) {
+  public forEach(callback: (value: P, key: T) => void) {
     this.map.forEach(callback)
   }
 }
