@@ -1,5 +1,5 @@
 import {BaseMapManager, Destroyable} from './base';
-import {TriggerTiming} from '@lib/util';
+import {TriggerTiming} from '../util';
 
 export type IEventListener = (context: any) => void
 

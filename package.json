@@ -19,6 +19,7 @@
     "execa": "^5.1.0",
     "fs-extra": "^10.0.0",
     "inquire": "^0.4.8",
+    "minimist": "^1.2.5",
     "semver": "^7.3.5"
   },
   "devDependencies": {

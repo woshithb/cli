@@ -1,6 +1,5 @@
-import {BaseController} from '@lib/context';
-import {Bean} from '@lib/util';
-import {BeanName} from '@lib/util';
+import {BaseController} from '../context';
+import {Bean, BeanName} from '../util';
 
 @Bean(BeanName.ParseController)
 export class ParseController implements BaseController {

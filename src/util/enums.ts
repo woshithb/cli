@@ -6,5 +6,5 @@ export enum BeanName {
 }
 
 export enum TriggerTiming {
-
+  NodeVersionCheck = 'NodeVersionCheck'
 }

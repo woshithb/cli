@@ -1,4 +1,4 @@
-import {BeanManager, IBeanManagerConstructProps} from '@lib/context';
+import {BeanManager, IBeanManagerConstructProps} from '@src/context';
 
 export class BasePresenter {
   constructor(option: IBeanManagerConstructProps) {
