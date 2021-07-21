@@ -2,19 +2,29 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "lib": ["es6"],
-    "outDir": "./lib",
-    "rootDir": "./",
+    "moduleResolution": "node",
+    "outDir": "lib",
     "strict": false,
     "strictPropertyInitialization": false,
-    "baseUrl": "./",
-    "paths": {
-      "@src/*": ["src/*"],
-    },
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ]
+    },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-  }
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": [
+    "lib",
+    "node_modules"
+  ],
+  "plugins": [
+    {
+      "transform": "@zerollup/ts-transform-paths",
+    }
+  ]
 }

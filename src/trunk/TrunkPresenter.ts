@@ -5,7 +5,7 @@ import {
   EventController,
   NodeVersionController,
   ParseController,
-} from '@src/controllers'
+} from '@src/controllers';
 
 export class TrunkPresenter extends BasePresenter {
 
