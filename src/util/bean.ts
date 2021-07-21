@@ -28,7 +28,7 @@ export function Bean(beanName: string): ClassDecorator {
 export function AutoWired(beanName: string): PropertyDecorator {
   return function (target, propertyName) {
     const beanProperty = getBeanProperty(target.constructor);
-    if (beanProperty.attributes) {
+    if (!beanProperty.attributes) {
       beanProperty.attributes = []
     }
     beanProperty.attributes.push({

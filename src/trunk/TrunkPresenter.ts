@@ -17,11 +17,11 @@ export class TrunkPresenter extends BasePresenter {
     return this.getBean(BeanName.EventController) as EventController
   }
 
-  public get NodeVersionController() {
+  public get nodeVersionController() {
     return this.getBean(BeanName.NodeVersionController) as NodeVersionController
   }
 
-  public get ParseController() {
+  public get parseController() {
     return this.getBean(BeanName.ParseController) as ParseController
   }
 
