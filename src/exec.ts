@@ -1,4 +1,4 @@
-import {TrunkPresenter} from '@src/trunk';
+import {Trunk} from '@src/trunk';
 import {
   CmdController,
   EventController,
@@ -6,7 +6,7 @@ import {
   ParseController,
 } from '@src/controllers';
 
-const trunkPresenter = new TrunkPresenter({
+const trunkPresenter = new Trunk({
   beans: [
     CmdController,
     EventController,

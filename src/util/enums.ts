@@ -6,5 +6,8 @@ export enum BeanName {
 }
 
 export enum TriggerTiming {
-  NodeVersionCheck = 'NodeVersionCheck'
+  NodeVersionCheck = 'NodeVersionCheck',
+  BeforeRegisterCmd = 'BeforeRegisterCmd',
+  OnRegisterCmd = 'OnRegisterCmd',
+  AfterRegisterCmd = 'AfterRegisterCmd'
 }

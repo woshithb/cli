@@ -1,4 +1,4 @@
-import {BasePlugin, BasePresenter} from '@src/context';
+import {BasePlugin, BaseTrunk} from '@src/context';
 import {BeanName} from '@src/util';
 import {
   CmdController,
@@ -7,7 +7,7 @@ import {
   ParseController,
 } from '@src/controllers';
 
-export class TrunkPresenter extends BasePresenter {
+export class BeanTrunk extends BaseTrunk {
 
   public get cmdController() {
     return this.getBean(BeanName.CmdController) as CmdController
@@ -29,7 +29,7 @@ export class TrunkPresenter extends BasePresenter {
     return this.beanManager.get(beanName).beanInstance
   }
 
-  public registerPlugin(plugin: BasePlugin<BasePresenter>) {
+  public registerPlugin(plugin: BasePlugin<BaseTrunk>) {
     plugin.apply(this);
   }
 }

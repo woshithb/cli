@@ -1,1 +1,2 @@
-export * from './TrunkPresenter'
+export * from './BeanTrunk';
+export * from './PaddleTrunk';
