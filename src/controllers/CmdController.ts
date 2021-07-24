@@ -2,7 +2,7 @@ import {BaseController} from '../context';
 import {AutoWired, Bean, BeanName, PostConstruct, TriggerTiming} from '../util';
 import {EventController} from '../controllers';
 import commander from 'commander';
-import {BaseCmdRegisterPlugin} from '@src/plugins'
+import {BaseOptionCmdPlugin, BaseActionCmdPlugin} from '@src/plugins';
 
 @Bean(BeanName.CmdController)
 export class CmdController implements BaseController {
@@ -18,7 +18,8 @@ export class CmdController implements BaseController {
   @PostConstruct
   postConstruct() {
     this.eventController.on(TriggerTiming.BeforeRegisterCmd, trunk => {
-
+      this.initCommander();
+      this.initVersion();
     })
     this.eventController.on(TriggerTiming.OnRegisterCmd, trunk => {
 
@@ -28,12 +29,26 @@ export class CmdController implements BaseController {
     })
   }
 
-  public registerCmdPlugin(plugin: BaseCmdRegisterPlugin) {
-    this.commander = new commander.Command('create <app-name>');
+  private initCommander() {
+    this.commander = new commander.Command('created <app-name>')
+  }
+
+  private initVersion() {
+    const _package_json_ = require('../../package.json');
+    this.commander
+      .version(_package_json_.version, '-v --version')
+      .usage('<command> [options]')
+  }
+
+  public registerActionPlugin(plugin: BaseActionCmdPlugin) {
     this.commander
       .description(plugin.description)
       .action((name, cmd) => {
         plugin.action(name, cmd)
       })
+  }
+
+  public registerOptionPlugin(plugin: BaseOptionCmdPlugin) {
+    this.commander.option(plugin.option);
   }
 }

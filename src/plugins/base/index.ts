@@ -1,1 +1,2 @@
-export * from './BaseCmdRegisterPlugin';
+export * from './BaseActionCmdPlugin';
+export * from './BaseOptionCmdPlugin';
