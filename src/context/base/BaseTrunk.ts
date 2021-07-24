@@ -1,17 +1,25 @@
-import {BeanManager, IBeanManagerConstructProps} from '@src/context';
+import {BeanManager, IBeanManagerConstructProps, BasePlugin} from '@src/context';
+import {PaddleTrunk} from '@src/trunk'
 
-export class BaseTrunk {
-  constructor(option: IBeanManagerConstructProps) {
+export interface IBaseTrunkProps extends IBeanManagerConstructProps {
+  plugins: (new() => BasePlugin<PaddleTrunk>)[]
+}
+
+export abstract class BaseTrunk {
+  constructor(option: IBaseTrunkProps) {
     this.beanManager = new BeanManager({
       beans: option.beans
     })
+    this.plugins = option.plugins
   }
 
   protected beanManager: BeanManager
 
-  protected prepare(): void {}
+  protected plugins: BasePlugin<PaddleTrunk>[]
 
-  protected workInProgress(): void {}
+  public abstract prepare(): void
 
-  protected conclude(): void {}
+  public abstract workInProgress(): void
+
+  public abstract conclude(): void
 }

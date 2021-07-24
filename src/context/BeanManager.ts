@@ -1,5 +1,5 @@
 import {BaseMapManager, BaseController, Destroyable} from './base';
-import {getBeanProperty} from '../util';
+import {getBeanProperty} from '@src/util';
 
 interface IBaseBean<T>{
   beanName: string,

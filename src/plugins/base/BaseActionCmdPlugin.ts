@@ -1,13 +1,13 @@
 import {BasePlugin} from '@src/context';
-import {PaddleTrunk} from '@src/trunk'
+import {PaddleTrunk} from '@src/trunk';
 
-export abstract class BaseActionCmdPlugin implements BasePlugin<PaddleTrunk>{
+export abstract class BaseActionCmdPlugin extends BasePlugin<PaddleTrunk>{
 
   public abstract description: string
 
   public abstract action(name: any, cmd: any): void
 
-  apply(context: PaddleTrunk) {
+  public apply(context: PaddleTrunk) {
     context.cmdController.registerActionPlugin(this)
   }
 }

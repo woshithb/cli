@@ -7,7 +7,7 @@ import {
   ParseController,
 } from '@src/controllers';
 
-export class BeanTrunk extends BaseTrunk {
+export abstract class BeanTrunk extends BaseTrunk {
 
   public get cmdController() {
     return this.getBean(BeanName.CmdController) as CmdController
@@ -27,9 +27,5 @@ export class BeanTrunk extends BaseTrunk {
 
   private getBean(beanName: BeanName) {
     return this.beanManager.get(beanName).beanInstance
-  }
-
-  public registerPlugin(plugin: BasePlugin<BaseTrunk>) {
-    plugin.apply(this);
   }
 }

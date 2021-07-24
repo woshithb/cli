@@ -1,16 +1,22 @@
-import {Trunk} from '@src/trunk';
+import {PaddleTrunk} from '@src/trunk';
 import {
   CmdController,
   EventController,
   NodeVersionController,
   ParseController,
 } from '@src/controllers';
+import {
+  CreateActionCmdPlugin,
+} from '@src/plugins'
 
-const trunkPresenter = new Trunk({
+const paddleTrunk = new PaddleTrunk({
   beans: [
     CmdController,
     EventController,
     NodeVersionController,
     ParseController
+  ],
+  plugins: [
+    CreateActionCmdPlugin
   ]
 })

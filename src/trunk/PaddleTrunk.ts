@@ -1,15 +1,20 @@
-import {BeanTrunk} from '@src/trunk'
+import {BeanTrunk} from '@src/trunk';
 
 export class PaddleTrunk extends BeanTrunk {
-  protected prepare() {
-    super.prepare();
+
+  private registerPlugins() {
+    this.plugins.forEach(plugin => plugin.apply(this));
   }
 
-  protected workInProgress() {
-    super.workInProgress();
+  public prepare() {
+    this.registerPlugins();
   }
 
-  protected conclude() {
-    super.conclude();
+  public workInProgress() {
+    console.log('workInProgress');
+  }
+
+  public conclude() {
+    console.log('conclude');
   }
 }
