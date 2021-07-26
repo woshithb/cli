@@ -17,6 +17,6 @@ const paddleTrunk = new PaddleTrunk({
     ParseController
   ],
   plugins: [
-    CreateActionCmdPlugin
+    new CreateActionCmdPlugin
   ]
 })

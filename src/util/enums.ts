@@ -6,8 +6,11 @@ export enum BeanName {
 }
 
 export enum TriggerTiming {
-  NodeVersionCheck = 'NodeVersionCheck',
   BeforeRegisterCmd = 'BeforeRegisterCmd',
-  OnRegisterCmd = 'OnRegisterCmd',
   AfterRegisterCmd = 'AfterRegisterCmd'
+}
+
+export enum InitialLiftCycle {
+  BeforeDirectoryCheck = 'BeforeDirectoryCheck',
+  AfterDirectoryCheck = 'AfterDirectoryCheck',
 }

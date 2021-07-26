@@ -21,9 +21,6 @@ export class CmdController implements BaseController {
       this.initCommander();
       this.initVersion();
     })
-    this.eventController.on(TriggerTiming.OnRegisterCmd, trunk => {
-
-    })
     this.eventController.on(TriggerTiming.AfterRegisterCmd, trunk => {
       this.commander.parse(process.argv)
     })
@@ -42,6 +39,7 @@ export class CmdController implements BaseController {
 
   public registerActionPlugin(plugin: BaseActionCmdPlugin) {
     this.commander
+      .command(plugin.command)
       .description(plugin.description)
       .action((name, cmd) => {
         plugin.action(name, cmd)
