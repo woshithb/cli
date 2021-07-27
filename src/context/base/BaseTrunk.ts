@@ -1,5 +1,5 @@
 import {BeanManager, IBeanManagerConstructProps, BasePlugin} from '@src/context';
-import {PaddleTrunk} from '@src/trunk'
+import {PaddleTrunk} from '@src/trunks'
 
 export interface IBaseTrunkProps extends IBeanManagerConstructProps {
   plugins: BasePlugin<PaddleTrunk>[]

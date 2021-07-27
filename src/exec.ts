@@ -1,4 +1,4 @@
-import {PaddleTrunk} from '@src/trunk';
+import {PaddleTrunk} from '@src/trunks';
 import {
   CmdController,
   EventController,

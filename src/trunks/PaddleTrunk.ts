@@ -1,4 +1,4 @@
-import {BeanTrunk} from '@src/trunk';
+import {BeanTrunk} from '@src/trunks';
 import {TriggerTiming} from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {

@@ -1,5 +1,5 @@
 import {BasePlugin} from '@src/context';
-import {PaddleTrunk} from '@src/trunk';
+import {PaddleTrunk} from '@src/trunks';
 
 export abstract class BaseActionCmdPlugin extends BasePlugin<PaddleTrunk>{
 

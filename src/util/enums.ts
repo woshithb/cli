@@ -10,7 +10,7 @@ export enum TriggerTiming {
   AfterRegisterCmd = 'AfterRegisterCmd'
 }
 
-export enum InitialLiftCycle {
+export enum ProjectInitialLiftCycle {
   BeforeDirectoryCheck = 'BeforeDirectoryCheck',
   AfterDirectoryCheck = 'AfterDirectoryCheck',
 }
