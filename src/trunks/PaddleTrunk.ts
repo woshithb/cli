@@ -1,5 +1,5 @@
 import {BeanTrunk} from '@src/trunks';
-import {TriggerTiming} from '@src/util';
+import {ProjectLifeCycle} from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {
 
@@ -8,9 +8,9 @@ export class PaddleTrunk extends BeanTrunk {
   }
 
   public prepare() {
-    this.eventController.dispatch(TriggerTiming.BeforeRegisterCmd, this);
+    this.eventController.dispatch(ProjectLifeCycle.BeforeRegisterCmd, this);
     this.registerPlugins();
-    this.eventController.dispatch(TriggerTiming.BeforeRegisterCmd, this);
+    this.eventController.dispatch(ProjectLifeCycle.BeforeRegisterCmd, this);
   }
 
   public workInProgress() {

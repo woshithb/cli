@@ -1,16 +1,16 @@
 import {BaseMapManager, Destroyable} from './base';
-import {TriggerTiming} from '../util';
+import {ProjectLifeCycle} from '../util';
 
 export type IEventListener = (context: any) => void
 
 export type IDisposer = () => void
 
-export class EventEmitter extends BaseMapManager<TriggerTiming, IEventListener[]> implements Destroyable {
+export class EventEmitter extends BaseMapManager<ProjectLifeCycle, IEventListener[]> implements Destroyable {
   public destroy() {
     this.clear()
   }
 
-  public on(time: TriggerTiming, listener: IEventListener): IDisposer {
+  public on(time: ProjectLifeCycle, listener: IEventListener): IDisposer {
     if (!this.has(time)) {
       this.set(time, []);
     }
@@ -18,7 +18,7 @@ export class EventEmitter extends BaseMapManager<TriggerTiming, IEventListener[]
     return () => this.off(time, listener)
   }
 
-  public off(time: TriggerTiming, listener: IEventListener) {
+  public off(time: ProjectLifeCycle, listener: IEventListener) {
     if (this.has(time)) {
       const listeners = this.get(time);
       const index = listeners.indexOf(listener);
@@ -28,7 +28,7 @@ export class EventEmitter extends BaseMapManager<TriggerTiming, IEventListener[]
     }
   }
 
-  public dispatch(time: TriggerTiming, context: any) {
+  public dispatch(time: ProjectLifeCycle, context: any) {
     if (this.has(time)) {
       this.get(time).forEach((listener => {
         listener(context);

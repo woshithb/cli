@@ -5,12 +5,9 @@ export enum BeanName {
   ParseController = 'ParseController'
 }
 
-export enum TriggerTiming {
+export enum ProjectLifeCycle {
   BeforeRegisterCmd = 'BeforeRegisterCmd',
-  AfterRegisterCmd = 'AfterRegisterCmd'
-}
-
-export enum ProjectInitialLiftCycle {
+  AfterRegisterCmd = 'AfterRegisterCmd',
   BeforeDirectoryCheck = 'BeforeDirectoryCheck',
   AfterDirectoryCheck = 'AfterDirectoryCheck',
 }

@@ -1,5 +1,5 @@
 import {BaseController} from '../context';
-import {AutoWired, Bean, BeanName, PostConstruct, TriggerTiming} from '../util';
+import {AutoWired, Bean, BeanName, PostConstruct, ProjectLifeCycle} from '../util';
 import {EventController} from '../controllers';
 import commander from 'commander';
 import {BaseOptionCmdPlugin, BaseActionCmdPlugin} from '@src/plugins';
@@ -17,11 +17,11 @@ export class CmdController implements BaseController {
 
   @PostConstruct
   postConstruct() {
-    this.eventController.on(TriggerTiming.BeforeRegisterCmd, trunk => {
+    this.eventController.on(ProjectLifeCycle.BeforeRegisterCmd, trunk => {
       this.initCommander();
       this.initVersion();
     })
-    this.eventController.on(TriggerTiming.AfterRegisterCmd, trunk => {
+    this.eventController.on(ProjectLifeCycle.AfterRegisterCmd, trunk => {
       this.commander.parse(process.argv)
     })
   }
