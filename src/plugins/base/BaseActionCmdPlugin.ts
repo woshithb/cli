@@ -7,7 +7,7 @@ export abstract class BaseActionCmdPlugin extends BasePlugin<PaddleTrunk>{
 
   public abstract description: string
 
-  public abstract action(name: any, cmd: any): void
+  public abstract action(args: any[]): void
 
   public apply(context: PaddleTrunk) {
     context.cmdController.registerActionPlugin(this)

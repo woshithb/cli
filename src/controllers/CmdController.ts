@@ -41,8 +41,8 @@ export class CmdController implements BaseController {
     this.commander
       .command(plugin.command)
       .description(plugin.description)
-      .action((name, cmd) => {
-        plugin.action(name, cmd)
+      .action((...args) => {
+        plugin.action(args)
       })
   }
 

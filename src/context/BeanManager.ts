@@ -20,7 +20,7 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
   private init() {
     this.createBeans();
     this.wireBeans();
-    this.postConstruct()
+    this.postConstruct();
   }
 
   public destroy() {
@@ -46,7 +46,7 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
       const beanProperty = getBeanProperty(baseBean.beanClass);
       if (beanProperty.attributes) {
         beanProperty.attributes.forEach(attribute => {
-          Reflect.set(baseBean.beanInstance, attribute.attributeName, this.lookForBeanInstance(beanName))
+          Reflect.set(baseBean.beanInstance, attribute.attributeName, this.lookForBeanInstance(attribute.beanName))
         })
       }
     })
@@ -54,7 +54,7 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
 
   private lookForBeanInstance(beanName: string) {
     if (this.has(beanName)) {
-      return this.get(beanName)
+      return this.get(beanName).beanInstance
     }
     console.error(`找不到 ${beanName} 的 Bean 实例`);
   }

@@ -6,7 +6,7 @@ export class CreateActionCmdPlugin extends BaseActionCmdPlugin {
 
   public description = 'create your project easily!'
 
-  public action(name: any, cmd: any) {
-
+  public action(args: any[]) {
+    console.log(args);
   }
 }
