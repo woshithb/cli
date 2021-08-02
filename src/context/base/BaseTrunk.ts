@@ -17,9 +17,9 @@ export abstract class BaseTrunk {
 
   protected plugins: BasePlugin<PaddleTrunk>[]
 
-  public abstract prepare(): void
+  protected abstract prepare(): void
 
-  public abstract workInProgress(): void
+  protected abstract workInProgress(): void
 
-  public abstract conclude(): void
+  protected abstract conclude(): void
 }

@@ -1,6 +1,7 @@
 import {BaseLinearExecuteController} from '@src/controllers';
-import {ProjectLifeCycle} from '@src/util';
+import {ProjectLifeCycle, BeanName, Bean} from '@src/util';
 
+@Bean(BeanName.LinearExecuteController)
 export class LinearExecuteController extends BaseLinearExecuteController {
 
   protected iterateNodes = [

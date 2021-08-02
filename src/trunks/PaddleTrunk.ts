@@ -7,17 +7,21 @@ export class PaddleTrunk extends BeanTrunk {
     this.plugins.forEach(plugin => plugin.apply(this));
   }
 
-  public prepare() {
+  protected prepare() {
     this.eventController.dispatch(ProjectLifeCycle.BeforeRegisterCmd, this);
     this.registerPlugins();
     this.eventController.dispatch(ProjectLifeCycle.BeforeRegisterCmd, this);
   }
 
-  public workInProgress() {
+  protected workInProgress() {
     console.log('workInProgress');
   }
 
-  public conclude() {
+  protected conclude() {
     console.log('conclude');
+  }
+
+  public execute() {
+
   }
 }

@@ -20,3 +20,5 @@ const paddleTrunk = new PaddleTrunk({
     new CreateActionCmdPlugin
   ]
 })
+
+paddleTrunk.execute();

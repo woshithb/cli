@@ -2,7 +2,8 @@ export enum BeanName {
   CmdController = 'CmdController',
   EventController = 'EventController',
   NodeVersionController = 'NodeVersionController',
-  ParseController = 'ParseController'
+  ParseController = 'ParseController',
+  LinearExecuteController = 'LinearExecuteController',
 }
 
 export enum ProjectLifeCycle {
