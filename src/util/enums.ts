@@ -10,5 +10,6 @@ export enum ProjectLifeCycle {
   BeforeRegisterCmd = 'BeforeRegisterCmd',
   AfterRegisterCmd = 'AfterRegisterCmd',
   BeforeDirectoryCheck = 'BeforeDirectoryCheck',
+  OnDirectoryCheck = 'OnDirectoryCheck',
   AfterDirectoryCheck = 'AfterDirectoryCheck',
 }

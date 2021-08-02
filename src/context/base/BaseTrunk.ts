@@ -16,10 +16,4 @@ export abstract class BaseTrunk {
   protected beanManager: BeanManager
 
   protected plugins: BasePlugin<PaddleTrunk>[]
-
-  protected abstract prepare(): void
-
-  protected abstract workInProgress(): void
-
-  protected abstract conclude(): void
 }

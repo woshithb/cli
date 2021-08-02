@@ -1,7 +1,7 @@
 import {BaseMapManager, Destroyable} from './base';
 import {ProjectLifeCycle} from '../util';
 
-export type IEventListener = (context: any) => void
+export type IEventListener = (context: any) => void | Promise<void>
 
 export type IDisposer = () => void
 
@@ -34,5 +34,12 @@ export class EventEmitter extends BaseMapManager<ProjectLifeCycle, IEventListene
         listener(context);
       }))
     }
+  }
+
+  public dispatchAsync(time: ProjectLifeCycle, context: any): Promise<void[]> {
+    if (this.has(time)) {
+      return Promise.all(this.get(time).map(listener => listener(context)))
+    }
+    return Promise.all([])
   }
 }

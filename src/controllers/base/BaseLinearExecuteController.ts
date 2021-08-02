@@ -5,9 +5,9 @@ export abstract class BaseLinearExecuteController extends BaseIterable<ProjectLi
 
   protected currentPointer: number = 0
 
-  public iterate(): stage<ProjectLifeCycle> {
+  protected iterate(): stage<ProjectLifeCycle> {
     const value = this.iterateNodes[this.currentPointer];
-    const done = this.currentPointer < this.iterateNodes.length - 1;
+    const done = this.currentPointer > this.iterateNodes.length - 1;
     return {value, done}
   }
 }
