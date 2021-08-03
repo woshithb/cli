@@ -1,13 +1,13 @@
 import {BeanTrunk} from '@src/trunks';
+import {PostConstruct} from '@src/util';
+import {ProjectInitializeLifeCycle} from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {
 
-  private registerPlugins() {
-    this.plugins.forEach(plugin => plugin.apply(this));
-  }
-
-  public async execute() {
-    this.registerPlugins();
-    await this.linearExecuteController.iterateExecute(this);
+  @PostConstruct
+  private postConstruct() {
+    this.eventController.on(ProjectInitializeLifeCycle.onPluginsRegister, () => {
+      this.plugins.forEach(plugin => plugin.apply(this))
+    })
   }
 }

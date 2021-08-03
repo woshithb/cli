@@ -6,10 +6,15 @@ export enum BeanName {
   LinearExecuteController = 'LinearExecuteController',
 }
 
-export enum ProjectLifeCycle {
-  BeforeRegisterCmd = 'BeforeRegisterCmd',
-  AfterRegisterCmd = 'AfterRegisterCmd',
-  BeforeDirectoryCheck = 'BeforeDirectoryCheck',
-  OnDirectoryCheck = 'OnDirectoryCheck',
-  AfterDirectoryCheck = 'AfterDirectoryCheck',
+export enum ProjectInitializeLifeCycle {
+  beforePluginsRegister = 'beforeRegisterCmd',
+  onPluginsRegister = 'onPluginsRegister',
+  afterPluginsRegister = 'afterRegisterCmd',
+  beforeDirectoryCheck = 'beforeDirectoryCheck',
+  onDirectoryCheck = 'onDirectoryCheck',
+  afterDirectoryCheck = 'afterDirectoryCheck',
+}
+
+export enum ProjectBuildLifeCycle {
+
 }

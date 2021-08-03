@@ -1,16 +1,16 @@
 import {BaseMapManager, Destroyable} from './base';
-import {ProjectLifeCycle} from '../util';
+import {ProjectInitializeLifeCycle} from '../util';
 
-export type IEventListener = (context: any) => void | Promise<void>
+export type IEventListener<T> = (args: T) => void | Promise<void>
 
 export type IDisposer = () => void
 
-export class EventEmitter extends BaseMapManager<ProjectLifeCycle, IEventListener[]> implements Destroyable {
+export class EventEmitter extends BaseMapManager<ProjectInitializeLifeCycle, IEventListener<any>[]> implements Destroyable {
   public destroy() {
     this.clear()
   }
 
-  public on(time: ProjectLifeCycle, listener: IEventListener): IDisposer {
+  public on(time: ProjectInitializeLifeCycle, listener: IEventListener<any>): IDisposer {
     if (!this.has(time)) {
       this.set(time, []);
     }
@@ -18,7 +18,7 @@ export class EventEmitter extends BaseMapManager<ProjectLifeCycle, IEventListene
     return () => this.off(time, listener)
   }
 
-  public off(time: ProjectLifeCycle, listener: IEventListener) {
+  public off(time: ProjectInitializeLifeCycle, listener: IEventListener<any>) {
     if (this.has(time)) {
       const listeners = this.get(time);
       const index = listeners.indexOf(listener);
@@ -28,17 +28,17 @@ export class EventEmitter extends BaseMapManager<ProjectLifeCycle, IEventListene
     }
   }
 
-  public dispatch(time: ProjectLifeCycle, context: any) {
+  public dispatch(time: ProjectInitializeLifeCycle, args: any) {
     if (this.has(time)) {
       this.get(time).forEach((listener => {
-        listener(context);
+        listener(args);
       }))
     }
   }
 
-  public dispatchAsync(time: ProjectLifeCycle, context: any): Promise<void[]> {
+  public dispatchAsync(time: ProjectInitializeLifeCycle, args: any): Promise<void[]> {
     if (this.has(time)) {
-      return Promise.all(this.get(time).map(listener => listener(context)))
+      return Promise.all(this.get(time).map(listener => listener(args)))
     }
     return Promise.all([])
   }

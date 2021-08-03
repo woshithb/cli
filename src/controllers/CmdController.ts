@@ -1,8 +1,8 @@
-import {BaseController} from '../context';
-import {AutoWired, Bean, BeanName, PostConstruct, ProjectLifeCycle} from '../util';
-import {EventController} from '../controllers';
+import {BaseController} from '@src/context';
+import {AutoWired, Bean, BeanName, PostConstruct, ProjectInitializeLifeCycle} from '@src/util';
+import {EventController} from '@src/controllers';
 import commander from 'commander';
-import {BaseOptionCmdPlugin, BaseActionCmdPlugin} from '@src/plugins';
+import {cmdCreator} from '@src/util';
 
 @Bean(BeanName.CmdController)
 export class CmdController implements BaseController {
@@ -16,18 +16,19 @@ export class CmdController implements BaseController {
   }
 
   @PostConstruct
-  postConstruct() {
-    this.eventController.on(ProjectLifeCycle.BeforeRegisterCmd, trunk => {
+  private postConstruct() {
+    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, trunk => {
       this.initCommander();
+      this.registerCmd()
       this.initVersion();
     })
-    this.eventController.on(ProjectLifeCycle.AfterRegisterCmd, trunk => {
+    this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, trunk => {
       this.commander.parse(process.argv)
     })
   }
 
   private initCommander() {
-    this.commander = new commander.Command('created <app-name>')
+    this.commander = new commander.Command()
   }
 
   private initVersion() {
@@ -37,16 +38,13 @@ export class CmdController implements BaseController {
       .usage('<command> [options]')
   }
 
-  public registerActionPlugin(plugin: BaseActionCmdPlugin) {
-    this.commander
-      .command(plugin.command)
-      .description(plugin.description)
-      .action((...args) => {
-        plugin.action(args)
-      })
-  }
-
-  public registerOptionPlugin(plugin: BaseOptionCmdPlugin) {
-    this.commander.option(plugin.option);
+  private registerCmd() {
+    const {actions = [], options = []} = cmdCreator(this.commander);
+    actions.forEach(config => {
+      this.commander
+        .command(config.command)
+        .description(config.description)
+        .action(config.action)
+    })
   }
 }

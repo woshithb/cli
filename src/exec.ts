@@ -4,9 +4,10 @@ import {
   EventController,
   NodeVersionController,
   ParseController,
+  LinearExecuteController,
 } from '@src/controllers';
 import {
-  CreateActionCmdPlugin,
+  CreateDirectoryActionPlugin,
 } from '@src/plugins'
 
 const paddleTrunk = new PaddleTrunk({
@@ -14,11 +15,14 @@ const paddleTrunk = new PaddleTrunk({
     CmdController,
     EventController,
     NodeVersionController,
-    ParseController
+    ParseController,
+    LinearExecuteController
   ],
   plugins: [
-    new CreateActionCmdPlugin
+    new CreateDirectoryActionPlugin()
   ]
 })
 
-paddleTrunk.execute();
+paddleTrunk.execute().then(() => {
+  process.exit(0)
+})
