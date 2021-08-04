@@ -1,6 +1,6 @@
 import {BaseController} from '@src/context';
 import {AutoWired, Bean, BeanName, PostConstruct, ProjectInitializeLifeCycle} from '@src/util';
-import {EventController} from '@src/controllers';
+import {EventController, LinearExecuteController} from '@src/controllers';
 import commander from 'commander';
 import {cmdCreator} from '@src/util';
 
@@ -9,6 +9,9 @@ export class CmdController implements BaseController {
 
   @AutoWired(BeanName.EventController)
   private eventController: EventController
+
+  @AutoWired(BeanName.LinearExecuteController)
+  public linearExecuteController: LinearExecuteController
 
   private commander: commander.Command
 
@@ -19,11 +22,11 @@ export class CmdController implements BaseController {
   private postConstruct() {
     this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, trunk => {
       this.initCommander();
-      this.registerCmd()
       this.initVersion();
+      this.registerCmd();
     })
     this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, trunk => {
-      this.commander.parse(process.argv)
+      this.commander.parse(process.argv);
     })
   }
 
@@ -39,12 +42,15 @@ export class CmdController implements BaseController {
   }
 
   private registerCmd() {
-    const {actions = [], options = []} = cmdCreator(this.commander);
+    const {actions = [], options = []} = cmdCreator(this);
     actions.forEach(config => {
       this.commander
         .command(config.command)
         .description(config.description)
         .action(config.action)
+    })
+    options.forEach(config => {
+      this.commander.option(config.flags, config.description, config.defaultValue);
     })
   }
 }

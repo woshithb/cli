@@ -1,4 +1,4 @@
-import commander from 'commander';
+import {CmdController} from '@src/controllers';
 
 interface ICmdRegisterConfigProps {
   actions?: IActionCmdProps[],
@@ -12,17 +12,20 @@ interface IActionCmdProps {
 }
 
 interface IOptionCmdProps {
-  option: string
+  flags: string,
+  description?: string,
+  defaultValue: string | boolean,
 }
 
-export function cmdCreator(commander: commander.Command): ICmdRegisterConfigProps {
+export function cmdCreator(cmdController: CmdController): ICmdRegisterConfigProps {
   return {
     actions: [
       {
         description: 'create your project easily!',
         command: 'create <app-name>',
         action: args => {
-          console.log(args)
+          console.log(args);
+          cmdController.linearExecuteController.syncContextArgs(args);
         }
       }
     ]

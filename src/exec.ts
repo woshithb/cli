@@ -22,7 +22,3 @@ const paddleTrunk = new PaddleTrunk({
     new CreateDirectoryActionPlugin()
   ]
 })
-
-paddleTrunk.execute().then(() => {
-  process.exit(0)
-})
