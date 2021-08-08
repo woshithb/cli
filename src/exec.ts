@@ -4,11 +4,14 @@ import {
   EventController,
   NodeVersionController,
   ParseController,
-  LinearExecuteController,
 } from '@src/controllers';
 import {
   CreateDirectoryActionPlugin,
-} from '@src/plugins'
+} from '@src/plugins';
+import {
+  CreateCmd
+} from '@src/cmd';
+import {BeanName} from '@src/util';
 
 const paddleTrunk = new PaddleTrunk({
   beans: [
@@ -16,8 +19,15 @@ const paddleTrunk = new PaddleTrunk({
     EventController,
     NodeVersionController,
     ParseController,
-    LinearExecuteController
   ],
+  seeds: {
+    [BeanName.CmdOptions]: {
+      actions: [
+        new CreateCmd(),
+      ],
+      options: []
+    }
+  },
   plugins: [
     new CreateDirectoryActionPlugin()
   ]

@@ -3,7 +3,7 @@ export enum BeanName {
   EventController = 'EventController',
   NodeVersionController = 'NodeVersionController',
   ParseController = 'ParseController',
-  LinearExecuteController = 'LinearExecuteController',
+  CmdOptions = 'CmdOptions'
 }
 
 export enum ProjectInitializeLifeCycle {

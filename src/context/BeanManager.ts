@@ -1,5 +1,5 @@
 import {BaseMapManager, BaseController, Destroyable} from './base';
-import {getBeanProperty} from '@src/util';
+import {getBeanProperty, BeanName} from '@src/util';
 
 interface IBaseBean<T>{
   beanName: string,
@@ -8,7 +8,8 @@ interface IBaseBean<T>{
 }
 
 export interface IBeanManagerConstructProps {
-  beans: (new() => BaseController)[],
+  beans?: (new() => BaseController)[],
+  seeds?: { [beanName: string]: any }
 }
 
 export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController>> implements Destroyable{
@@ -53,6 +54,9 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
   }
 
   private lookForBeanInstance(beanName: string) {
+    if (this.option.seeds && this.option.seeds.hasOwnProperty(beanName)) {
+      return this.option.seeds[beanName]
+    }
     if (this.has(beanName)) {
       return this.get(beanName).beanInstance
     }

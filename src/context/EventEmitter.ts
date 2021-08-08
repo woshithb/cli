@@ -1,45 +1,43 @@
-import {BaseMapManager, Destroyable} from './base';
-import {ProjectInitializeLifeCycle} from '../util';
+import {BaseMapManager, Destroyable} from '@src/context';
+import {ProjectInitializeLifeCycle} from '@src/util';
+import {AsyncSeriesWaterfallHook} from 'tapable';
 
-export type IEventListener<T> = (args: T) => void | Promise<void>
+export type IWaterfallHook<T> = (contextParams: T) => T
 
-export type IDisposer = () => void
+export class EventEmitter extends BaseMapManager<
+  ProjectInitializeLifeCycle,
+  AsyncSeriesWaterfallHook<ProjectInitializeLifeCycle, any>
+  > implements Destroyable {
 
-export class EventEmitter extends BaseMapManager<ProjectInitializeLifeCycle, IEventListener<any>[]> implements Destroyable {
   public destroy() {
     this.clear()
   }
 
-  public on(time: ProjectInitializeLifeCycle, listener: IEventListener<any>): IDisposer {
-    if (!this.has(time)) {
-      this.set(time, []);
+  public on(lifeTime: ProjectInitializeLifeCycle, waterfallHook: IWaterfallHook<any>) {
+    if (!this.has(lifeTime)) {
+      this.set(lifeTime, new AsyncSeriesWaterfallHook())
     }
-    this.get(time).push(listener);
-    return () => this.off(time, listener)
+    this.get(lifeTime).tapPromise(requestId(), waterfallHook)
   }
 
-  public off(time: ProjectInitializeLifeCycle, listener: IEventListener<any>) {
-    if (this.has(time)) {
-      const listeners = this.get(time);
-      const index = listeners.indexOf(listener);
-      if (index > -1) {
-        listeners.splice(index, 1);
-      }
+  public async dispatchAsync(lifeTime: ProjectInitializeLifeCycle, contextParams: any) {
+    if (!this.has(lifeTime)) {
+      throw new Error(`没有找到${lifeTime}对应的hook`);
     }
+    return this.get(lifeTime).promise(contextParams);
   }
 
-  public dispatch(time: ProjectInitializeLifeCycle, args: any) {
-    if (this.has(time)) {
-      this.get(time).forEach((listener => {
-        listener(args);
-      }))
-    }
+  public async dispatchAsyncWaterfall(contextParams: any, lifeCycle: ProjectInitializeLifeCycle[]) {
+    const asyncWaterfallHook = new AsyncSeriesWaterfallHook();
+    lifeCycle.forEach(lifeTime => {
+      asyncWaterfallHook.tapPromise(lifeTime, async (params) => {
+        return this.dispatchAsync(lifeTime, params);
+      })
+    })
+    return asyncWaterfallHook.promise(contextParams);
   }
+}
 
-  public dispatchAsync(time: ProjectInitializeLifeCycle, args: any): Promise<void[]> {
-    if (this.has(time)) {
-      return Promise.all(this.get(time).map(listener => listener(args)))
-    }
-    return Promise.all([])
-  }
+function requestId(): string {
+  return new Date().getTime().toString()
 }

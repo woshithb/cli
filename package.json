@@ -22,11 +22,13 @@
     "inquire": "^0.4.8",
     "minimist": "^1.2.5",
     "semver": "^7.3.5",
+    "tapable": "^2.2.0",
     "ts-node": "^10.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
     "@types/semver": "^7.3.7",
+    "@types/tapable": "^2.2.2",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "module-alias": "^2.2.2",
     "tsconfig-paths": "^3.10.1",

@@ -1,8 +1,13 @@
 import {BaseController} from '@src/context';
 import {AutoWired, Bean, BeanName, PostConstruct, ProjectInitializeLifeCycle} from '@src/util';
-import {EventController, LinearExecuteController} from '@src/controllers';
+import {EventController} from '@src/controllers';
 import commander from 'commander';
-import {cmdCreator} from '@src/util';
+import {BaseActionCmd, BaseOptionCmd} from '@src/cmd';
+
+export interface ICmdOptions {
+  actions: BaseActionCmd[],
+  options: BaseOptionCmd[],
+}
 
 @Bean(BeanName.CmdController)
 export class CmdController implements BaseController {
@@ -10,8 +15,8 @@ export class CmdController implements BaseController {
   @AutoWired(BeanName.EventController)
   private eventController: EventController
 
-  @AutoWired(BeanName.LinearExecuteController)
-  public linearExecuteController: LinearExecuteController
+  @AutoWired(BeanName.CmdOptions)
+  private cmdOptions: ICmdOptions
 
   private commander: commander.Command
 
@@ -20,13 +25,15 @@ export class CmdController implements BaseController {
 
   @PostConstruct
   private postConstruct() {
-    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, trunk => {
+    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, contextParams => {
       this.initCommander();
       this.initVersion();
       this.registerCmd();
+      return contextParams
     })
-    this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, trunk => {
+    this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, contextParams => {
       this.commander.parse(process.argv);
+      return contextParams
     })
   }
 
@@ -42,7 +49,7 @@ export class CmdController implements BaseController {
   }
 
   private registerCmd() {
-    const {actions = [], options = []} = cmdCreator(this);
+    const {actions, options} = this.cmdOptions
     actions.forEach(config => {
       this.commander
         .command(config.command)
