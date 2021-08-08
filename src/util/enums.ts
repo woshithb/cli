@@ -6,6 +6,11 @@ export enum BeanName {
   CmdOptions = 'CmdOptions'
 }
 
+export enum ProjectMode {
+  initialize = 'initialize',
+  build = 'build',
+}
+
 export enum ProjectInitializeLifeCycle {
   beforePluginsRegister = 'beforeRegisterCmd',
   onPluginsRegister = 'onPluginsRegister',
@@ -15,6 +20,19 @@ export enum ProjectInitializeLifeCycle {
   afterDirectoryCheck = 'afterDirectoryCheck',
 }
 
+export const ProjectInitializeLifeCycleEnums = [
+  ProjectInitializeLifeCycle.beforePluginsRegister,
+  ProjectInitializeLifeCycle.onPluginsRegister,
+  ProjectInitializeLifeCycle.afterPluginsRegister,
+  ProjectInitializeLifeCycle.beforeDirectoryCheck,
+  ProjectInitializeLifeCycle.onDirectoryCheck,
+  ProjectInitializeLifeCycle.afterDirectoryCheck,
+]
+
 export enum ProjectBuildLifeCycle {
 
 }
+
+export const ProjectBuildLifeCycleEnums = [
+
+]
