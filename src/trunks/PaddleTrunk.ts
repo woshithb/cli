@@ -27,8 +27,8 @@ export class PaddleTrunk extends BeanTrunk {
     })
   }
 
-  public async paddle() {
+  public paddle() {
     const {contextParams} = this.parseController;
-    await this.eventController.dispatchAsyncWaterfall(contextParams, this.lifeCycleEnums);
+    return this.eventController.dispatchAsyncWaterfall(contextParams, this.lifeCycleEnums);
   }
 }

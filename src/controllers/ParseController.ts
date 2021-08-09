@@ -8,7 +8,9 @@ export interface IContextParams {
 @Bean(BeanName.ParseController)
 export class ParseController implements BaseController {
 
-  public contextParams: IContextParams = {}
+  public contextParams: IContextParams = {
+    mode: ProjectMode.initialize
+  }
 
   public destroy() {
   }

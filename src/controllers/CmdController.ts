@@ -3,6 +3,7 @@ import {AutoWired, Bean, BeanName, PostConstruct, ProjectInitializeLifeCycle} fr
 import {EventController} from '@src/controllers';
 import commander from 'commander';
 import {BaseActionCmd, BaseOptionCmd} from '@src/cmd';
+import path from 'path';
 
 export interface ICmdOptions {
   actions: BaseActionCmd[],
@@ -42,7 +43,7 @@ export class CmdController implements BaseController {
   }
 
   private initVersion() {
-    const _package_json_ = require('../../package.json');
+    const _package_json_ = require(path.resolve(__dirname, '../../../package.json'));
     this.commander
       .version(_package_json_.version, '-v --version')
       .usage('<command> [options]')

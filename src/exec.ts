@@ -32,3 +32,5 @@ const paddleTrunk = new PaddleTrunk({
     new CreateDirectoryActionPlugin()
   ]
 })
+
+paddleTrunk.paddle().then(() => console.log('构建完毕'))

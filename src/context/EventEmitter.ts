@@ -15,23 +15,25 @@ export class EventEmitter extends BaseMapManager<
 
   public on(lifeTime: ProjectInitializeLifeCycle, waterfallHook: IWaterfallHook<any>) {
     if (!this.has(lifeTime)) {
-      this.set(lifeTime, new AsyncSeriesWaterfallHook())
+      this.set(lifeTime, new AsyncSeriesWaterfallHook([lifeTime]))
     }
-    this.get(lifeTime).tapPromise(requestId(), waterfallHook)
+    this.get(lifeTime).tapPromise(requestId(), (contextParams: any) => {
+      return Promise.resolve(waterfallHook(contextParams));
+    })
   }
 
-  public async dispatchAsync(lifeTime: ProjectInitializeLifeCycle, contextParams: any) {
+  public dispatchAsync(lifeTime: ProjectInitializeLifeCycle, contextParams: any) {
     if (!this.has(lifeTime)) {
-      throw new Error(`没有找到${lifeTime}对应的hook`);
+      return Promise.resolve(contextParams)
     }
     return this.get(lifeTime).promise(contextParams);
   }
 
-  public async dispatchAsyncWaterfall(contextParams: any, lifeCycle: ProjectInitializeLifeCycle[]) {
-    const asyncWaterfallHook = new AsyncSeriesWaterfallHook();
+  public dispatchAsyncWaterfall(contextParams: any, lifeCycle: ProjectInitializeLifeCycle[]) {
+    const asyncWaterfallHook = new AsyncSeriesWaterfallHook([contextParams.mode]);
     lifeCycle.forEach(lifeTime => {
-      asyncWaterfallHook.tapPromise(lifeTime, async (params) => {
-        return this.dispatchAsync(lifeTime, params);
+      asyncWaterfallHook.tapPromise(lifeTime, (params) => {
+        return Promise.resolve(this.dispatchAsync(lifeTime, params));
       })
     })
     return asyncWaterfallHook.promise(contextParams);
