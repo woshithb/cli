@@ -9,7 +9,7 @@ import {
   CreateDirectoryActionPlugin,
 } from '@src/plugins';
 import {
-  CreateCmd
+  CreateActionCmd
 } from '@src/cmd';
 import {BeanName} from '@src/util';
 
@@ -23,7 +23,7 @@ const paddleTrunk = new PaddleTrunk({
   seeds: {
     [BeanName.CmdOptions]: {
       actions: [
-        new CreateCmd(),
+        new CreateActionCmd(),
       ],
       options: []
     }

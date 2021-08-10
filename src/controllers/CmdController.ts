@@ -4,6 +4,7 @@ import {EventController} from '@src/controllers';
 import commander from 'commander';
 import {BaseActionCmd, BaseOptionCmd} from '@src/cmd';
 import path from 'path';
+import {PaddleTrunk} from '@src/trunks';
 
 export interface ICmdOptions {
   actions: BaseActionCmd[],
@@ -26,10 +27,12 @@ export class CmdController implements BaseController {
 
   @PostConstruct
   private postConstruct() {
-    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, contextParams => {
+    this.eventController.on(ProjectInitializeLifeCycle.onCommanderInitialize, contextParams => {
       this.initCommander();
+      return contextParams;
+    })
+    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, contextParams => {
       this.initVersion();
-      this.registerCmd();
       return contextParams
     })
     this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, contextParams => {
@@ -49,15 +52,19 @@ export class CmdController implements BaseController {
       .usage('<command> [options]')
   }
 
-  private registerCmd() {
+  public registerCmd(paddleTrunk: PaddleTrunk) {
     const {actions, options} = this.cmdOptions
-    actions.forEach(config => {
+    actions.forEach(actionCmd => {
+      const config = actionCmd.getActionCmdOptions()
       this.commander
         .command(config.command)
         .description(config.description)
-        .action(config.action)
+        .action((...args) => {
+          config.action(paddleTrunk, args);
+        })
     })
-    options.forEach(config => {
+    options.forEach(optionCmd => {
+      const config = optionCmd.getOptionCmdOptions()
       this.commander.option(config.flags, config.description, config.defaultValue);
     })
   }

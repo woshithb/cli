@@ -1,3 +1,3 @@
 export * from './base';
-export * from './CreateCmd';
+export * from './CreateActionCmd';
 export * from './BuildActionCmd';

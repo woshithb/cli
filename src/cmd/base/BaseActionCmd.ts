@@ -1,7 +1,17 @@
+import {PaddleTrunk} from '@src/trunks';
+
 export abstract class BaseActionCmd {
-  public abstract description: string
+  protected abstract description: string
 
-  public abstract command: string
+  protected abstract command: string
 
-  public abstract action: (args: any) => void
+  protected abstract action(paddleTrunk: PaddleTrunk, args: any[]): void
+
+  public getActionCmdOptions() {
+    return {
+      description: this.description,
+      command: this.command,
+      action: this.action
+    }
+  }
 }

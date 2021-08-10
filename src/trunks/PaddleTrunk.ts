@@ -1,9 +1,9 @@
 import {BeanTrunk} from '@src/trunks';
 import {
-  ProjectInitializeLifeCycle,
-  ProjectMode,
   ProjectBuildLifeCycleEnums,
-  ProjectInitializeLifeCycleEnums
+  ProjectInitializeLifeCycle,
+  ProjectInitializeLifeCycleEnums,
+  ProjectMode
 } from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {
@@ -22,8 +22,13 @@ export class PaddleTrunk extends BeanTrunk {
   }
 
   private postConstruct() {
-    this.eventController.on(ProjectInitializeLifeCycle.onPluginsRegister, () => {
-      this.plugins.forEach(plugin => plugin.apply(this))
+    this.eventController.on(ProjectInitializeLifeCycle.afterCommanderInitialize, contextParams => {
+      this.cmdController.registerCmd(this);
+      return contextParams;
+    })
+    this.eventController.on(ProjectInitializeLifeCycle.onPluginsRegister, contextParams => {
+      this.plugins.forEach(plugin => plugin.apply(this));
+      return contextParams
     })
   }
 

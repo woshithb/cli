@@ -1,7 +1,15 @@
 export abstract class BaseOptionCmd {
-  public abstract flags: string
+  protected abstract flags: string
 
-  public abstract description: string
+  protected abstract description: string
 
-  public abstract defaultValue: string | boolean
+  protected abstract defaultValue: string | boolean
+
+  public getOptionCmdOptions() {
+    return {
+      flags: this.flags,
+      description: this.description,
+      defaultValue: this.defaultValue
+    }
+  }
 }

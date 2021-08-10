@@ -1,11 +1,11 @@
 import {BaseActionCmd} from '@src/cmd';
 
-export class BuildActionCmd implements BaseActionCmd {
-  public description = ''
+export class BuildActionCmd extends BaseActionCmd {
+  protected description = ''
 
-  public command = 'build'
+  protected command = 'build'
 
-  public action(args: any) {
+  protected action(args: any) {
     console.log('build')
   }
 }

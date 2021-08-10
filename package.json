@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "ts-node -r tsconfig-paths/register src/exec.ts",
-    "build": "ttsc -P ./tsconfig.json"
+    "build": "ttsc -P ./tsconfig.json",
+    "test": "npm run build && paddle create app"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "ts-node": "^10.1.0"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.12",
     "@types/node": "^16.0.0",
     "@types/semver": "^7.3.7",
     "@types/tapable": "^2.2.2",

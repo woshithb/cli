@@ -5,6 +5,7 @@ import {
   EventController,
   NodeVersionController,
   ParseController,
+  PrintInfoController
 } from '@src/controllers';
 
 export abstract class BeanTrunk extends BaseTrunk {
@@ -23,6 +24,10 @@ export abstract class BeanTrunk extends BaseTrunk {
 
   public get parseController() {
     return this.getBean(BeanName.ParseController) as ParseController
+  }
+
+  public get printInfoController() {
+    return this.getBean(BeanName.PrintInfoController) as PrintInfoController
   }
 
   private getBean(beanName: BeanName) {

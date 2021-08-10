@@ -2,7 +2,9 @@ import {BaseController} from '@src/context';
 import {Bean, BeanName, ProjectMode} from '@src/util';
 
 export interface IContextParams {
-  mode?: ProjectMode
+  mode?: ProjectMode,
+  directory?: string,
+  forceCreate?: boolean,
 }
 
 @Bean(BeanName.ParseController)
