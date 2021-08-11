@@ -5,14 +5,13 @@ export interface IContextParams {
   mode?: ProjectMode,
   directory?: string,
   forceCreate?: boolean,
+  isExist?: boolean,
 }
 
 @Bean(BeanName.ParseController)
 export class ParseController implements BaseController {
 
-  public contextParams: IContextParams = {
-    mode: ProjectMode.initialize
-  }
+  public contextParams: IContextParams = {}
 
   public destroy() {
   }

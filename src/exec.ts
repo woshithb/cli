@@ -7,6 +7,7 @@ import {
 } from '@src/controllers';
 import {
   CreateDirectoryActionPlugin,
+  DirectoryCheckPlugin
 } from '@src/plugins';
 import {
   CreateActionCmd
@@ -29,6 +30,7 @@ const paddleTrunk = new PaddleTrunk({
     }
   },
   plugins: [
+    new DirectoryCheckPlugin(),
     new CreateDirectoryActionPlugin()
   ]
 })

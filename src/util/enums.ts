@@ -18,10 +18,13 @@ export enum ProjectInitializeLifeCycle {
   afterCommanderInitialize = 'afterCommanderInitialize',
   beforePluginsRegister = 'beforeRegisterCmd',
   onPluginsRegister = 'onPluginsRegister',
-  afterPluginsRegister = 'afterRegisterCmd',
+  afterPluginsRegister = 'afterPluginsRegister',
   beforeDirectoryCheck = 'beforeDirectoryCheck',
   onDirectoryCheck = 'onDirectoryCheck',
   afterDirectoryCheck = 'afterDirectoryCheck',
+  beforeDirectoryCreate = 'beforeDirectoryCreate',
+  onDirectoryCreate = 'onDirectoryCreate',
+  afterDirectoryCreate = 'afterDirectoryCreate',
 }
 
 export const ProjectInitializeLifeCycleEnums = [
@@ -34,6 +37,9 @@ export const ProjectInitializeLifeCycleEnums = [
   ProjectInitializeLifeCycle.beforeDirectoryCheck,
   ProjectInitializeLifeCycle.onDirectoryCheck,
   ProjectInitializeLifeCycle.afterDirectoryCheck,
+  ProjectInitializeLifeCycle.beforeDirectoryCreate,
+  ProjectInitializeLifeCycle.onDirectoryCreate,
+  ProjectInitializeLifeCycle.afterDirectoryCreate,
 ]
 
 export enum ProjectBuildLifeCycle {
