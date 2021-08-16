@@ -37,7 +37,7 @@ export class CreateDirectoryActionPlugin implements BasePlugin<PaddleTrunk> {
     const projectPath = path.resolve(process.cwd(), contextParams.directory);
     console.log(projectPath)
     try {
-      if (!contextParams.isExist) {
+      if (!contextParams.isDirectoryExist) {
         await mkdir(projectPath)
       } else {
         paddleTrunk.printInfoController.printDeleteExistingDirectoryInfo();

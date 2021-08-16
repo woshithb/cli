@@ -28,7 +28,7 @@ export class DirectoryCheckPlugin extends BasePlugin<PaddleTrunk> {
 
   private registerAfterDirectoryCheck(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.afterDirectoryCheck, (contextParams: IContextParams) => {
-      if (!contextParams.forceCreate && contextParams.isExist) {
+      if (!contextParams.forceCreate && contextParams.isDirectoryExist) {
         paddleTrunk.printInfoController.printExistDueToDirectoryExist();
         process.exit(0);
       }
@@ -37,6 +37,6 @@ export class DirectoryCheckPlugin extends BasePlugin<PaddleTrunk> {
 
   private static checkDirectory(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
     const projectPath = path.resolve(process.cwd(), contextParams.directory);
-    contextParams.isExist = existsSync(projectPath);
+    contextParams.isDirectoryExist = existsSync(projectPath);
   }
 }
