@@ -4,6 +4,7 @@ import {
   EventController,
   NodeVersionController,
   ParseController,
+  PrintInfoController,
 } from '@src/controllers';
 import {
   CreateDirectoryActionPlugin,
@@ -20,6 +21,7 @@ const paddleTrunk = new PaddleTrunk({
     EventController,
     NodeVersionController,
     ParseController,
+    PrintInfoController
   ],
   seeds: {
     [BeanName.CmdOptions]: {

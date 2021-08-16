@@ -4,7 +4,8 @@ export enum BeanName {
   NodeVersionController = 'NodeVersionController',
   ParseController = 'ParseController',
   PrintInfoController = 'PrintInfoController',
-  CmdOptions = 'CmdOptions'
+  CmdOptions = 'CmdOptions',
+  Plugins = 'Plugins'
 }
 
 export enum ProjectMode {
@@ -13,12 +14,6 @@ export enum ProjectMode {
 }
 
 export enum ProjectInitializeLifeCycle {
-  beforeCommanderInitialize = 'beforeCommanderInitialized',
-  onCommanderInitialize = 'onCommanderInitialize',
-  afterCommanderInitialize = 'afterCommanderInitialize',
-  beforePluginsRegister = 'beforeRegisterCmd',
-  onPluginsRegister = 'onPluginsRegister',
-  afterPluginsRegister = 'afterPluginsRegister',
   beforeDirectoryCheck = 'beforeDirectoryCheck',
   onDirectoryCheck = 'onDirectoryCheck',
   afterDirectoryCheck = 'afterDirectoryCheck',
@@ -28,12 +23,6 @@ export enum ProjectInitializeLifeCycle {
 }
 
 export const ProjectInitializeLifeCycleEnums = [
-  ProjectInitializeLifeCycle.beforeCommanderInitialize,
-  ProjectInitializeLifeCycle.onCommanderInitialize,
-  ProjectInitializeLifeCycle.afterCommanderInitialize,
-  ProjectInitializeLifeCycle.beforePluginsRegister,
-  ProjectInitializeLifeCycle.onPluginsRegister,
-  ProjectInitializeLifeCycle.afterPluginsRegister,
   ProjectInitializeLifeCycle.beforeDirectoryCheck,
   ProjectInitializeLifeCycle.onDirectoryCheck,
   ProjectInitializeLifeCycle.afterDirectoryCheck,

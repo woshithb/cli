@@ -20,25 +20,16 @@ export class CmdController implements BaseController {
   @AutoWired(BeanName.CmdOptions)
   private cmdOptions: ICmdOptions
 
-  private commander: commander.Command
+  public commander: commander.Command
 
   public destroy() {
   }
 
   @PostConstruct
   private postConstruct() {
-    this.eventController.on(ProjectInitializeLifeCycle.onCommanderInitialize, contextParams => {
-      this.initCommander();
-      return contextParams;
-    })
-    this.eventController.on(ProjectInitializeLifeCycle.beforePluginsRegister, contextParams => {
-      this.initVersion();
-      return contextParams
-    })
-    this.eventController.on(ProjectInitializeLifeCycle.afterPluginsRegister, contextParams => {
-      this.commander.parse(process.argv);
-      return contextParams
-    })
+    this.initCommander();
+    this.initVersion();
+    this.commander.parse(process.argv);
   }
 
   private initCommander() {

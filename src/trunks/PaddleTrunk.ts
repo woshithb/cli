@@ -1,7 +1,6 @@
 import {BeanTrunk} from '@src/trunks';
 import {
   ProjectBuildLifeCycleEnums,
-  ProjectInitializeLifeCycle,
   ProjectInitializeLifeCycleEnums,
   ProjectMode
 } from '@src/util';
@@ -22,14 +21,9 @@ export class PaddleTrunk extends BeanTrunk {
   }
 
   private postConstruct() {
-    this.eventController.on(ProjectInitializeLifeCycle.afterCommanderInitialize, contextParams => {
-      this.cmdController.registerCmd(this);
-      return contextParams;
-    })
-    this.eventController.on(ProjectInitializeLifeCycle.onPluginsRegister, contextParams => {
-      this.plugins.forEach(plugin => plugin.apply(this));
-      return contextParams
-    })
+    this.plugins.forEach(plugin => plugin.apply(this));
+    this.cmdController.registerCmd(this);
+    this.parseController.parse();
   }
 
   public paddle() {
