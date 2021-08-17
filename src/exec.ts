@@ -8,7 +8,9 @@ import {
 } from '@src/controllers';
 import {
   CreateDirectoryActionPlugin,
-  DirectoryCheckPlugin
+  DirectoryCheckPlugin,
+  EnsurePlatformPlugin,
+  BaseFrameworkSelectionPlugin,
 } from '@src/plugins';
 import {
   CreateActionCmd
@@ -33,7 +35,9 @@ const paddleTrunk = new PaddleTrunk({
   },
   plugins: [
     new DirectoryCheckPlugin(),
-    new CreateDirectoryActionPlugin()
+    new CreateDirectoryActionPlugin(),
+    new EnsurePlatformPlugin(),
+    new BaseFrameworkSelectionPlugin(),
   ]
 })
 

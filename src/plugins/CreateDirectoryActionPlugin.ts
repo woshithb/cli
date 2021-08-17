@@ -21,7 +21,7 @@ export class CreateDirectoryActionPlugin implements BasePlugin<PaddleTrunk> {
   }
 
   private registerOnDirectoryCreate(paddleTrunk: PaddleTrunk) {
-    paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onDirectoryCheck, async (contextParams: IContextParams) => {
+    paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onDirectoryCreate, async (contextParams: IContextParams) => {
       await CreateDirectoryActionPlugin.createDirectory(paddleTrunk, contextParams);
       return contextParams;
     })

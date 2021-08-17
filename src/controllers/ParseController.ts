@@ -1,7 +1,7 @@
 import {BaseController} from '@src/context';
 import {Bean, BeanName, ProjectMode, AutoWired} from '@src/util';
 import {CmdController} from '@src/controllers';
-import {Platform, BaseFramework} from '@src/util';
+import {Platform, BaseFramework, UIFramework} from '@src/util';
 
 export interface IContextParams {
   mode?: ProjectMode,
@@ -10,7 +10,7 @@ export interface IContextParams {
   isDirectoryExist?: boolean,
   platform?: Platform,
   baseFramework?: BaseFramework,
-  uiFrameWork?:
+  uiFrameWork?: UIFramework,
 }
 
 @Bean(BeanName.ParseController)
