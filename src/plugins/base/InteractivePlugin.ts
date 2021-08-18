@@ -1,12 +1,9 @@
 import {BasePlugin} from '@src/context';
 import {PaddleTrunk} from '@src/trunks';
-import inquirer from 'inquirer';
 
 export abstract class InteractivePlugin<T> implements BasePlugin<PaddleTrunk> {
 
-  protected
+  protected abstract prompts: T
 
   public apply(paddleTrunk: PaddleTrunk) {}
-
-  protected abstract getPrompts(): T[]
 }

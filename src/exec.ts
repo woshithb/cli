@@ -11,6 +11,7 @@ import {
   DirectoryCheckPlugin,
   EnsurePlatformPlugin,
   BaseFrameworkSelectionPlugin,
+  UIFrameworkSelectionPlugin,
 } from '@src/plugins';
 import {
   CreateActionCmd
@@ -38,6 +39,7 @@ const paddleTrunk = new PaddleTrunk({
     new CreateDirectoryActionPlugin(),
     new EnsurePlatformPlugin(),
     new BaseFrameworkSelectionPlugin(),
+    new UIFrameworkSelectionPlugin(),
   ]
 })
 
