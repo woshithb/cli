@@ -10,7 +10,7 @@ export interface IContextParams {
   isDirectoryExist?: boolean,
   platform?: Platform,
   baseFramework?: BaseFramework,
-  uiFrameWork?: UIFramework,
+  uiFrameWork?: UIFramework[],
 }
 
 @Bean(BeanName.ParseController)

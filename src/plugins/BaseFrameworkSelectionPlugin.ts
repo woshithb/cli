@@ -16,7 +16,7 @@ export class BaseFrameworkSelectionPlugin extends InteractivePlugin<inquirer.Raw
     BaseFramework.remax
   ]
 
-  protected prompts = baseFrameworkPrompts
+  protected prompt = baseFrameworkPrompts
 
   public apply(paddleTrunk: PaddleTrunk) {
     super.apply(paddleTrunk);
@@ -24,16 +24,18 @@ export class BaseFrameworkSelectionPlugin extends InteractivePlugin<inquirer.Raw
       this.promptsTreeShakingByPlatform(contextParams);
     })
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onSelectBaseFramework, async (contextParams: IContextParams) => {
-      const answer = await inquirer.prompt(this.prompts);
+      const answer = await inquirer.prompt(this.prompt);
       contextParams.baseFramework = answer.baseFramework;
     })
   }
 
   private promptsTreeShakingByPlatform(contextParams: IContextParams) {
     if (contextParams.platform === Platform.web) {
-      this.prompts.choices = this.webBaseFramework;
+      this.prompt.choices = this.webBaseFramework;
+      this.prompt.default = BaseFramework.react
     } else {
-      this.prompts.choices = this.miniProgramFramework;
+      this.prompt.choices = this.miniProgramFramework;
+      this.prompt.default = BaseFramework.taro;
     }
   }
 }
