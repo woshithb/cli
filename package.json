@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "ts-node -r tsconfig-paths/register src/exec.ts",
     "build": "ttsc -P ./tsconfig.json",
-    "test": "npm run build && paddle create app"
+    "test": "npm run build && paddle create -f app"
   },
   "keywords": [],
   "author": "",

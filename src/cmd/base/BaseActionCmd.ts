@@ -1,17 +1,26 @@
 import {PaddleTrunk} from '@src/trunks';
 
 export abstract class BaseActionCmd {
-  protected abstract description: string
+  protected abstract actionDescription: string
 
   protected abstract command: string
 
   protected abstract action(paddleTrunk: PaddleTrunk, args: any[]): void
 
+  protected abstract optionDescription: string
+
+  protected abstract flags: string
+
+  protected abstract defaultValue: string | boolean
+
   public getActionCmdOptions() {
     return {
-      description: this.description,
+      actionDescription: this.actionDescription,
       command: this.command,
-      action: this.action
+      action: this.action,
+      optionDescription: this.optionDescription,
+      flags: this.flags,
+      defaultValue: this.defaultValue
     }
   }
 }

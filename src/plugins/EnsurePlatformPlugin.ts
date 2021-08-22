@@ -6,7 +6,7 @@ import {IContextParams} from '@src/controllers';
 
 export class EnsurePlatformPlugin extends InteractivePlugin<inquirer.RawListQuestion>{
 
-  protected prompts = platformPrompts
+  protected prompt = platformPrompts
 
   public apply(paddleTrunk: PaddleTrunk) {
     super.apply(paddleTrunk);
@@ -17,7 +17,7 @@ export class EnsurePlatformPlugin extends InteractivePlugin<inquirer.RawListQues
   }
 
   private async syncPlatformInfo(contextParams: IContextParams) {
-    const answer = await inquirer.prompt(this.prompts);
+    const answer = await inquirer.prompt(this.prompt);
     contextParams.platform = answer.platform
   }
 }

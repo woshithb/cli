@@ -14,7 +14,7 @@ import {
   UIFrameworkSelectionPlugin,
 } from '@src/plugins';
 import {
-  CreateActionCmd
+  CreateActionCmd,
 } from '@src/cmd';
 import {BeanName} from '@src/util';
 
@@ -27,12 +27,9 @@ const paddleTrunk = new PaddleTrunk({
     PrintInfoController
   ],
   seeds: {
-    [BeanName.CmdOptions]: {
-      actions: [
-        new CreateActionCmd(),
-      ],
-      options: []
-    }
+    [BeanName.CmdOptions]: [
+      new CreateActionCmd(),
+    ]
   },
   plugins: [
     new DirectoryCheckPlugin(),
