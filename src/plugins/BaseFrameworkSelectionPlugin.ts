@@ -20,9 +20,17 @@ export class BaseFrameworkSelectionPlugin extends InteractivePlugin<inquirer.Raw
 
   public apply(paddleTrunk: PaddleTrunk) {
     super.apply(paddleTrunk);
+    this.registerBeforeSelectBaseFramework(paddleTrunk);
+    this.registerOnSelectBaseFramework(paddleTrunk);
+  }
+
+  private registerBeforeSelectBaseFramework(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.beforeSelectBaseFramework, (contextParams: IContextParams) => {
       this.promptsTreeShakingByPlatform(contextParams);
     })
+  }
+
+  private registerOnSelectBaseFramework(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onSelectBaseFramework, async (contextParams: IContextParams) => {
       const answer = await inquirer.prompt(this.prompt);
       contextParams.baseFramework = answer.baseFramework;

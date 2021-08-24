@@ -10,6 +10,10 @@ export class EnsurePlatformPlugin extends InteractivePlugin<inquirer.RawListQues
 
   public apply(paddleTrunk: PaddleTrunk) {
     super.apply(paddleTrunk);
+    this.registerOnEnsurePlatform(paddleTrunk);
+  }
+
+  private registerOnEnsurePlatform(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onEnsurePlatform, async (contextParams: IContextParams) => {
       await this.syncPlatformInfo(contextParams);
       return contextParams;

@@ -86,3 +86,15 @@ export enum UIFramework {
   antd_mobile = 'ant-design-mobile',
   mint_ui = 'mint-ui',
 }
+
+export enum StateManagementLibrary {
+  mobx = 'mobx',
+  redux = 'redux',
+  flutter = 'flutter',
+  vuex = 'vuex',
+}
+
+export enum projectPackWay {
+  webpack = 'webpack',
+  vite = 'vite',
+}

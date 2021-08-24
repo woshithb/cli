@@ -12,6 +12,8 @@ import {
   EnsurePlatformPlugin,
   BaseFrameworkSelectionPlugin,
   UIFrameworkSelectionPlugin,
+  StateManagementSelectionPlugin,
+  PackWaySelectionPlugin,
 } from '@src/plugins';
 import {
   CreateActionCmd,
@@ -37,7 +39,9 @@ const paddleTrunk = new PaddleTrunk({
     new EnsurePlatformPlugin(),
     new BaseFrameworkSelectionPlugin(),
     new UIFrameworkSelectionPlugin(),
+    new StateManagementSelectionPlugin(),
+    new PackWaySelectionPlugin(),
   ]
 })
 
-paddleTrunk.paddle().then(() => console.log('构建完毕'))
+paddleTrunk.paddle().then(() => paddleTrunk.printInfoController.printProjectInitializedInfo())

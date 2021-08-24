@@ -51,6 +51,10 @@ export class PrintInfoController extends BaseController {
     console.log(infoChalk('prepare create project directory...'));
   }
 
+  public printProjectInitializedInfo() {
+    console.log(successChalk(`the project ${this.directory} is initialized successfully!`))
+  }
+
   public printError(error) {
     console.log(errorChalk(error))
   }

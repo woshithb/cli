@@ -19,9 +19,19 @@ export class UIFrameworkSelectionPlugin extends InteractivePlugin<inquirer.Check
   protected prompt: inquirer.CheckboxQuestion = uiFrameworkPrompts
 
   public apply(paddleTrunk: PaddleTrunk) {
+    super.apply(paddleTrunk);
+    this.registerBeforeSelectUIFramework(paddleTrunk);
+    this.registerOnSelectUIFramework(paddleTrunk);
+  }
+
+  private registerBeforeSelectUIFramework(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.beforeSelectUIFramework, (contextParams: IContextParams) => {
       this.promptsTreeShakingByPlatform(contextParams);
+      return contextParams;
     })
+  }
+
+  private registerOnSelectUIFramework(paddleTrunk: PaddleTrunk) {
     paddleTrunk.eventController.on(ProjectInitializeLifeCycle.onSelectUIFramework, async (contextParams: IContextParams) => {
       const answer = await inquirer.prompt(this.prompt);
       contextParams.uiFrameWork = answer.uiFramework;
