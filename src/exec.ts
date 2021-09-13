@@ -5,6 +5,7 @@ import {
   NodeVersionController,
   ParseController,
   PrintInfoController,
+  PluginsController,
 } from '@src/controllers';
 import {
   CreateDirectoryActionPlugin,
@@ -26,22 +27,24 @@ const paddleTrunk = new PaddleTrunk({
     EventController,
     NodeVersionController,
     ParseController,
-    PrintInfoController
+    PrintInfoController,
+    PluginsController
   ],
   seeds: {
     [BeanName.CmdOptions]: [
       new CreateActionCmd(),
+    ],
+    [BeanName.PaddleTrunk]: this,
+    [BeanName.Plugins]: [
+      new DirectoryCheckPlugin(),
+      new CreateDirectoryActionPlugin(),
+      new EnsurePlatformPlugin(),
+      new BaseFrameworkSelectionPlugin(),
+      new UIFrameworkSelectionPlugin(),
+      new StateManagementSelectionPlugin(),
+      new PackWaySelectionPlugin(),
     ]
   },
-  plugins: [
-    new DirectoryCheckPlugin(),
-    new CreateDirectoryActionPlugin(),
-    new EnsurePlatformPlugin(),
-    new BaseFrameworkSelectionPlugin(),
-    new UIFrameworkSelectionPlugin(),
-    new StateManagementSelectionPlugin(),
-    new PackWaySelectionPlugin(),
-  ]
 })
 
 paddleTrunk.paddle().then(() => paddleTrunk.printInfoController.printProjectInitializedInfo())

@@ -1,10 +1,15 @@
+import {PluginsController} from "@src/controllers/PluginsController";
+
 export enum BeanName {
   CmdController = 'CmdController',
   EventController = 'EventController',
   NodeVersionController = 'NodeVersionController',
   ParseController = 'ParseController',
   PrintInfoController = 'PrintInfoController',
+  PluginsController = 'PluginsController',
   CmdOptions = 'CmdOptions',
+  PaddleTrunk = 'PaddleTrunk',
+  Plugins = 'Plugins',
 }
 
 export enum ProjectMode {
@@ -34,6 +39,9 @@ export enum ProjectInitializeLifeCycle {
   beforeDirectoryCreate = 'beforeDirectoryCreate',
   onDirectoryCreate = 'onDirectoryCreate',
   afterDirectoryCreate = 'afterDirectoryCreate',
+  beforeEmitFile = 'beforeEmitFile',
+  onEmitFile = 'onEmitFile',
+  afterEmitFile = 'afterEmitFile',
 }
 
 export const ProjectInitializeLifeCycleEnums = [

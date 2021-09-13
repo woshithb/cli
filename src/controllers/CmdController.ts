@@ -1,6 +1,6 @@
 import {BaseController} from '@src/context';
 import {AutoWired, Bean, BeanName, PostConstruct, ProjectInitializeLifeCycle} from '@src/util';
-import {EventController} from '@src/controllers';
+import {EventController, ParseController} from '@src/controllers';
 import commander from 'commander';
 import {BaseActionCmd} from '@src/cmd';
 import path from 'path';
@@ -9,8 +9,14 @@ import {PaddleTrunk} from '@src/trunks';
 @Bean(BeanName.CmdController)
 export class CmdController implements BaseController {
 
+  @AutoWired(BeanName.PaddleTrunk)
+  private paddleTrunk: PaddleTrunk
+
   @AutoWired(BeanName.EventController)
   private eventController: EventController
+
+  @AutoWired(BeanName.ParseController)
+  public parseController: ParseController
 
   @AutoWired(BeanName.CmdOptions)
   private cmdOptions: BaseActionCmd[]
@@ -24,6 +30,8 @@ export class CmdController implements BaseController {
   private postConstruct() {
     this.initCommander();
     this.initVersion();
+    this.registerCmd();
+    this.parseController.parse();
   }
 
   private initCommander() {
@@ -37,7 +45,7 @@ export class CmdController implements BaseController {
       .usage('<command> [options]')
   }
 
-  public registerCmd(paddleTrunk: PaddleTrunk) {
+  public registerCmd() {
     this.cmdOptions.forEach(actionCmd => {
       const config = actionCmd.getActionCmdOptions()
       this.commander
@@ -45,7 +53,7 @@ export class CmdController implements BaseController {
         .description(config.actionDescription)
         .option(config.flags, config.optionDescription, config.defaultValue)
         .action((...args) => {
-          config.action(paddleTrunk, args);
+          config.action(this, args);
         })
     })
   }

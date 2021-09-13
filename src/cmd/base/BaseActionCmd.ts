@@ -1,11 +1,11 @@
-import {PaddleTrunk} from '@src/trunks';
+import {CmdController} from '@src/controllers';
 
 export abstract class BaseActionCmd {
   protected abstract actionDescription: string
 
   protected abstract command: string
 
-  protected abstract action(paddleTrunk: PaddleTrunk, args: any[]): void
+  protected abstract action(controller: CmdController, args: any[]): void
 
   protected abstract optionDescription: string
 

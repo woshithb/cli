@@ -6,10 +6,6 @@ import {
 } from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {
-  constructor(option) {
-    super(option);
-    this.postConstruct();
-  }
 
   public get lifeCycleEnums() {
     const {contextParams} = this.parseController;
@@ -18,12 +14,6 @@ export class PaddleTrunk extends BeanTrunk {
     } else {
       return ProjectBuildLifeCycleEnums
     }
-  }
-
-  private postConstruct() {
-    this.plugins.forEach(plugin => plugin.apply(this));
-    this.cmdController.registerCmd(this);
-    this.parseController.parse();
   }
 
   public paddle() {

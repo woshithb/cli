@@ -40,6 +40,7 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
         beanInstance: new beanClass(),
       })
     })
+    Object.keys()
   }
 
   private wireBeans() {
