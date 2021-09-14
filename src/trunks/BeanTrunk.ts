@@ -19,27 +19,9 @@ export abstract class BeanTrunk extends BaseTrunk {
   @AutoWired(BeanName.PrintInfoController)
   public printInfoController: PrintInfoController
 
-  // public get cmdController() {
-  //   return this.getBean(BeanName.CmdController) as CmdController
-  // }
-  //
-  // public get eventController() {
-  //   return this.getBean(BeanName.EventController) as EventController
-  // }
-  //
-  // public get nodeVersionController() {
-  //   return this.getBean(BeanName.NodeVersionController) as NodeVersionController
-  // }
-  //
-  // public get parseController() {
-  //   return this.getBean(BeanName.ParseController) as ParseController
-  // }
-  //
-  // public get printInfoController() {
-  //   return this.getBean(BeanName.PrintInfoController) as PrintInfoController
-  // }
-  //
-  // private getBean(beanName: BeanName) {
-  //   return this.beanManager.get(beanName).beanInstance
-  // }
+  @AutoWired(BeanName.CmdController)
+  public cmdController: CmdController
+
+  @AutoWired(BeanName.NodeVersionController)
+  public nodeVersionController: NodeVersionController
 }

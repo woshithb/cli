@@ -40,7 +40,6 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
         beanInstance: new beanClass(),
       })
     })
-    Object.keys()
   }
 
   private wireBeans() {
@@ -49,6 +48,15 @@ export class BeanManager extends BaseMapManager<string, IBaseBean<BaseController
       if (beanProperty.attributes) {
         beanProperty.attributes.forEach(attribute => {
           Reflect.set(baseBean.beanInstance, attribute.attributeName, this.lookForBeanInstance(attribute.beanName))
+        })
+      }
+    })
+    Object.keys(this.option.seeds).forEach(key => {
+      const seedInstance = this.option.seeds[key];
+      const beanProperty = getBeanProperty(seedInstance.constructor);
+      if (beanProperty.attributes) {
+        beanProperty.attributes.forEach(attribute => {
+          Reflect.set(seedInstance, attribute.attributeName, this.lookForBeanInstance(attribute.beanName))
         })
       }
     })

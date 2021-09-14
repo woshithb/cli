@@ -1,11 +1,14 @@
 import {BeanManager, IBeanManagerConstructProps, BasePlugin} from '@src/context';
-import {PaddleTrunk} from '@src/trunks';
+import {BeanName} from '@src/util';
 
 export abstract class BaseTrunk {
   constructor(option: IBeanManagerConstructProps) {
     this.beanManager = new BeanManager({
       beans: option.beans,
-      seeds: option.seeds
+      seeds: {
+        ...option.seeds,
+        [BeanName.PaddleTrunk]: this
+      }
     })
   }
 

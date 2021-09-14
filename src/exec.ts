@@ -34,7 +34,6 @@ const paddleTrunk = new PaddleTrunk({
     [BeanName.CmdOptions]: [
       new CreateActionCmd(),
     ],
-    [BeanName.PaddleTrunk]: this,
     [BeanName.Plugins]: [
       new DirectoryCheckPlugin(),
       new CreateDirectoryActionPlugin(),

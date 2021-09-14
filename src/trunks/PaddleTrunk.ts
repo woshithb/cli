@@ -2,7 +2,7 @@ import {BeanTrunk} from '@src/trunks';
 import {
   ProjectBuildLifeCycleEnums,
   ProjectInitializeLifeCycleEnums,
-  ProjectMode
+  ProjectMode,
 } from '@src/util';
 
 export class PaddleTrunk extends BeanTrunk {
