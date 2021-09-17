@@ -35,7 +35,6 @@ export class CreateDirectoryActionPlugin implements BasePlugin<PaddleTrunk> {
 
   private static async createDirectory(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
     const projectPath = path.resolve(process.cwd(), contextParams.directory);
-    console.log(projectPath)
     try {
       if (!contextParams.isDirectoryExist) {
         await mkdir(projectPath)

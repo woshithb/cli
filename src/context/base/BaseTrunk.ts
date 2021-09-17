@@ -7,7 +7,7 @@ export abstract class BaseTrunk {
       beans: option.beans,
       seeds: {
         ...option.seeds,
-        [BeanName.PaddleTrunk]: this
+        [BeanName.Trunk]: this
       }
     })
   }

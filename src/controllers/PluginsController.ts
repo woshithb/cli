@@ -8,7 +8,7 @@ export class PluginsController implements BaseController {
   @AutoWired(BeanName.Plugins)
   private plugins: BasePlugin<PaddleTrunk>[]
 
-  @AutoWired(BeanName.PaddleTrunk)
+  @AutoWired(BeanName.Trunk)
   private paddleTrunk: PaddleTrunk
 
   @PostConstruct

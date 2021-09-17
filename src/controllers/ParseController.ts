@@ -21,7 +21,8 @@ export interface IContextParams {
   baseFramework?: BaseFramework,
   uiFrameWork?: UIFramework[],
   stateManagement?: StateManagementLibrary[],
-  packWay?: projectPackWay
+  packWay?: projectPackWay,
+  extraNodeModules?: string[]
 }
 
 @Bean(BeanName.ParseController)

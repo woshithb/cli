@@ -9,7 +9,7 @@ import {PaddleTrunk} from '@src/trunks';
 @Bean(BeanName.CmdController)
 export class CmdController implements BaseController {
 
-  @AutoWired(BeanName.PaddleTrunk)
+  @AutoWired(BeanName.Trunk)
   private paddleTrunk: PaddleTrunk
 
   @AutoWired(BeanName.EventController)
@@ -53,7 +53,7 @@ export class CmdController implements BaseController {
         .description(config.actionDescription)
         .option(config.flags, config.optionDescription, config.defaultValue)
         .action((...args) => {
-          config.action(this, args);
+          config.action(this.paddleTrunk, args);
         })
     })
   }

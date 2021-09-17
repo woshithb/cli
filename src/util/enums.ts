@@ -8,7 +8,7 @@ export enum BeanName {
   PrintInfoController = 'PrintInfoController',
   PluginsController = 'PluginsController',
   CmdOptions = 'CmdOptions',
-  PaddleTrunk = 'PaddleTrunk',
+  Trunk = 'Trunk',
   Plugins = 'Plugins',
 }
 
