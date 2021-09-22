@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import {BaseFramework, Platform, UIFramework, StateManagementLibrary, projectPackWay} from '@src/util';
+import {BaseFramework, Platform, UIFramework, StateManagementLibrary, ProjectPackWay} from '@src/util';
 
 export const platformPrompts: inquirer.RawListQuestion = {
   type: 'rawlist',
@@ -55,9 +55,9 @@ export const packWayPrompts: inquirer.RawListQuestion = {
   type: 'rawlist',
   name: 'packWay',
   message: 'choose how your project is packaged',
-  default: projectPackWay.webpack,
+  default: ProjectPackWay.webpack,
   choices: [
-    projectPackWay.webpack,
-    projectPackWay.vite,
+    ProjectPackWay.webpack,
+    ProjectPackWay.vite,
   ]
 }

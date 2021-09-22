@@ -8,9 +8,14 @@ import {
   BaseFramework,
   UIFramework,
   StateManagementLibrary,
-  projectPackWay
+  ProjectPackWay
 } from '@src/util';
 import {CmdController} from '@src/controllers';
+
+interface IExtraNodeModulesProps {
+  devDependencies?: string[],
+  dependencies?: string[]
+}
 
 export interface IContextParams {
   mode?: ProjectMode,
@@ -21,8 +26,8 @@ export interface IContextParams {
   baseFramework?: BaseFramework,
   uiFrameWork?: UIFramework[],
   stateManagement?: StateManagementLibrary[],
-  packWay?: projectPackWay,
-  extraNodeModules?: string[]
+  packWay?: ProjectPackWay,
+  extraNodeModules?: IExtraNodeModulesProps
 }
 
 @Bean(BeanName.ParseController)

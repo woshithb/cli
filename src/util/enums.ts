@@ -102,7 +102,7 @@ export enum StateManagementLibrary {
   vuex = 'vuex',
 }
 
-export enum projectPackWay {
+export enum ProjectPackWay {
   webpack = 'webpack',
   vite = 'vite',
 }

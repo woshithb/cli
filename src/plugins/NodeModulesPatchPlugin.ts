@@ -13,7 +13,10 @@ export class NodeModulesPatchPlugin extends BasePlugin<PaddleTrunk> {
   }
 
   private static patchNecessaryModules(contextParams: IContextParams) {
-    contextParams.extraNodeModules = [];
+    contextParams.extraNodeModules = {
+      dependencies: [],
+      devDependencies: []
+    };
     const patches: BasePatch<IContextParams>[] = [
       new StatementManagementPatch(),
       new WebpackPatch(),
