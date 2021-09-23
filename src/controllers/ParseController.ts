@@ -11,6 +11,7 @@ import {
   ProjectPackWay
 } from '@src/util';
 import {CmdController} from '@src/controllers';
+import path from 'path';
 
 interface IExtraNodeModulesProps {
   devDependencies?: string[],
@@ -37,6 +38,10 @@ export class ParseController implements BaseController {
   private cmdController: CmdController
 
   public contextParams: IContextParams = {}
+
+  public get projectDirectory() {
+    return path.resolve(process.cwd(), this.contextParams.directory);
+  }
 
   public parse() {
     this.cmdController.commander.parse(process.argv);

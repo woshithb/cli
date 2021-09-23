@@ -15,7 +15,9 @@ import {
   UIFrameworkSelectionPlugin,
   StateManagementSelectionPlugin,
   PackWaySelectionPlugin,
-  NodeModulesPatchPlugin
+  NodeModulesPatchPlugin,
+  NodeUpdatePlugin,
+  EmitProjectFilePlugin,
 } from '@src/plugins';
 import {
   CreateActionCmd,
@@ -43,7 +45,9 @@ const paddleTrunk = new PaddleTrunk({
       new UIFrameworkSelectionPlugin(),
       new StateManagementSelectionPlugin(),
       new PackWaySelectionPlugin(),
-      new NodeModulesPatchPlugin()
+      new NodeModulesPatchPlugin(),
+      new NodeUpdatePlugin(),
+      new EmitProjectFilePlugin()
     ]
   },
 })

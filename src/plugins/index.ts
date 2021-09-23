@@ -8,3 +8,4 @@ export * from './UIFrameworkSelectionPlugin';
 export * from './StateManagementSelectionPlugin';
 export * from './PackWaySelectionPlugin';
 export * from './NodeModulesPatchPlugin';
+export * from './EmitProjectFilePlugin';
