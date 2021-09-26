@@ -25,7 +25,7 @@ export class WebpackPatch extends BasePatch<IContextParams> {
 
 const devDependencies = [
   'webpack-cli',
-  'webpack-dev-serve',
+  'webpack-dev-server',
   '@babel/core',
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-decorators',

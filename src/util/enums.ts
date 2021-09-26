@@ -66,6 +66,9 @@ export const ProjectInitializeLifeCycleEnums = [
   ProjectInitializeLifeCycle.beforeDirectoryCreate,
   ProjectInitializeLifeCycle.onDirectoryCreate,
   ProjectInitializeLifeCycle.afterDirectoryCreate,
+  ProjectInitializeLifeCycle.beforeEmitFile,
+  ProjectInitializeLifeCycle.onEmitFile,
+  ProjectInitializeLifeCycle.afterEmitFile
 ]
 
 export enum ProjectBuildLifeCycle {
