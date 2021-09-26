@@ -15,14 +15,14 @@ export class EmitProjectFilePlugin implements BasePlugin<PaddleTrunk> {
     });
   }
 
-  private static execInitCmd(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
+  static execInitCmd(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
     execSync(`cd ${paddleTrunk.parseController.projectDirectory} && npm init -y`, {
       stdio: 'inherit'
     });
     return contextParams;
   }
 
-  private static onEmitFile(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
+  static onEmitFile(paddleTrunk: PaddleTrunk, contextParams: IContextParams) {
     const devModules = [
       contextParams.packWay,
       ...contextParams.extraNodeModules.devDependencies,
